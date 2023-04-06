@@ -27,7 +27,7 @@
 
         <EditText
             android:id="@+id/edit_imc_height"
-            android:hint="@string/weight"
+            android:hint="@string/height"
             style="@style/EditTextForm" />
 
         <Button
