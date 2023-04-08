@@ -5,6 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -13,6 +15,15 @@
         android:gravity="center"
         android:orientation="vertical"
         tools:context=".ImcActivity">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/imc"
+            android:textAlignment="center"
+            android:textSize="34dp"
+            android:textColor="@color/black"
+            />
 
         <TextView
             style="@style/TextViewForm"
@@ -30,10 +41,17 @@
             android:hint="@string/height"
             style="@style/EditTextForm" />
 
+        <ImageView
+            android:layout_width="277dp"
+            android:layout_height="266dp"
+            android:layout_gravity="center"
+            android:src="@drawable/peso" />
+
         <Button
             android:id="@+id/btn_imc_send"
             android:text="@string/calc"
             style="@style/ButtonForm" />
+
 
     </LinearLayout>
 
