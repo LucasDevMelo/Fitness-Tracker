@@ -10,10 +10,12 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), OnItemClickListener {
 
 //    private lateinit var btnImc: LinearLayout
     private lateinit var rvMain: RecyclerView
@@ -39,6 +41,22 @@ class MainActivity : AppCompatActivity() {
                 color = Color.YELLOW
             )
         )
+        mainItems.add(
+            MainItem(
+                id = 3,
+                drawableId = R.drawable.baseline_data_usage_24,
+                textStringId = R.string.label_imc,
+                color = Color.MAGENTA
+            )
+        )
+        mainItems.add(
+            MainItem(
+                id = 3,
+                drawableId = R.drawable.sharp_wb_twilight_24,
+                textStringId = R.string.label_imc,
+                color = Color.BLACK
+            )
+        )
 
         // 1) o layout XML
         // 2) aonde a recyclerview vai aparecer (tela principal, tela cheia)
@@ -48,7 +66,7 @@ class MainActivity : AppCompatActivity() {
         //informa ao sdk qual layout que a gente vai inflar
         rvMain.adapter = adapter
         //para informar que elemento sera colocado, onde sera colocado e como
-        rvMain.layoutManager = LinearLayoutManager(this)
+        rvMain.layoutManager = GridLayoutManager(this, 2)
 
         //classe para administrar a recycleview e suas celulas(seus layouts de itens)
         //Adapter ->
@@ -65,6 +83,10 @@ class MainActivity : AppCompatActivity() {
 //        }
     }
     //é para dizer qual é a classe que administra o layout
+
+    override fun onClick() {
+        TODO("Not yet implemented")
+    }
     private inner class MainAdapter(private val mainItems: List<MainItem>) : RecyclerView.Adapter<MainViewHolder>(){
 
         //1 - Informa ao RecycleView qual é o layout XML da célula específica
@@ -91,13 +113,22 @@ class MainActivity : AppCompatActivity() {
         fun bind(item: MainItem){
             val img: ImageView = itemView.findViewById(R.id.item_img_icon)
             val name: TextView = itemView.findViewById(R.id.item_txt_name)
-            val container: LinearLayout = itemView as LinearLayout
+            val container: LinearLayout = itemView.findViewById(R.id.item_container_imc)
 
             img.setImageResource(item.drawableId)
             //anexar texto string
             name.setText(item.textStringId)
             container.setBackgroundColor(item.color)
-        }
 
+            container.setOnClickListener{
+//                val intent = Intent(this, ImcActivity::class.java)
+//                startActivity(intent)
+            }
+        }
     }
+
+    //3 maneiras de escutar eventos de click usando celular(viewholder) activities
+    //1. impl interface
+    //2. objetos anonimos
+    //3. funcional
 }
